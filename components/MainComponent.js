@@ -6,6 +6,8 @@ import { View, Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 
+// In this lesson, you learned how to create and configure a StackNavigator with React Navigator. You also learned to use the navigation prop passed from the StackNavigator to its screen components for its navigate() and getParam() functions. 
+
 
 const DirectoryNavigator = createStackNavigator(
     {
@@ -43,3 +45,4 @@ class Main extends Component {
 }
 
 export default Main;
+
