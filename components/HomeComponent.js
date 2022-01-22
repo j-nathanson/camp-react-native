@@ -5,6 +5,12 @@ import { CAMPSITES } from '../shared/campsites';
 import { PROMOTIONS } from '../shared/promotions';
 import { PARTNERS } from '../shared/partners';
 
+// In this lesson, you updated the Home component so that it retrieves the featured campsite, promotion, and partner from data files, then uses the data to build three separate Card components using a new custom component called RenderItem. 
+
+// scroll view lazy loading on renders what is on screen more efficient, content off screen is not in memory
+//  flat list doesn't
+
+// Card creator
 function RenderItem({ item }) {
     if (item) {
         return (
@@ -21,6 +27,7 @@ function RenderItem({ item }) {
     return <View />;
 }
 
+//Render a card for each 'featured' object from each data group 
 class Home extends Component {
 
     constructor(props) {
@@ -32,6 +39,7 @@ class Home extends Component {
         };
     }
 
+    // top navbar title
     static navigationOptions = {
         title: 'Home'
     }
@@ -51,5 +59,6 @@ class Home extends Component {
             </ScrollView>
         );
     }
+}
 
 export default Home;

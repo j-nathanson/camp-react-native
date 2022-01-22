@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import Home from './HomeComponent';
 import Directory from './DirectoryComponent';
 import CampsiteInfo from './CampsiteInfoComponent';
+import About from './AboutComponent';
+import Contact from './ContactComponent';
 import Constants from 'expo-constants';
 import { View, Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createAppContainer } from 'react-navigation';
 
-// In this lesson, you learned how to create and configure a StackNavigator with React Navigator. You also learned to use the navigation prop passed from the StackNavigator to its screen components for its navigate() and getParam() functions. 
 
-
+// Directory page
 const DirectoryNavigator = createStackNavigator(
     {
         Directory: { screen: Directory },
@@ -30,6 +31,7 @@ const DirectoryNavigator = createStackNavigator(
     }
 );
 
+// Home Page
 const HomeNavigator = createStackNavigator(
     {
         Home: { screen: Home }
@@ -47,16 +49,55 @@ const HomeNavigator = createStackNavigator(
     }
 );
 
+// About Page
+const AboutNavigator = createStackNavigator(
+    {
+        Home: { screen: About }
+    },
+    {
+        defaultNavigationOptions: {
+            headerStyle: {
+                backgroundColor: '#5637DD'
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                color: '#fff'
+            }
+        }
+    }
+);
+// Contact Page
+const ContactNavigator = createStackNavigator(
+    {
+        Home: { screen: Contact }
+    },
+    {
+        defaultNavigationOptions: {
+            headerStyle: {
+                backgroundColor: '#5637DD'
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                color: '#fff'
+            }
+        }
+    }
+);
+
+// sliding drawer default to home, run navigator functions
 const MainNavigator = createDrawerNavigator(
     {
         Home: { screen: HomeNavigator },
-        Directory: { screen: DirectoryNavigator }
+        Directory: { screen: DirectoryNavigator },
+        About: { screen: AboutNavigator },
+        Contact: { screen: ContactNavigator }
     },
     {
         drawerBackgroundColor: '#CEC8FF'
     }
 );
 
+// run the main navigator
 const AppNavigator = createAppContainer(MainNavigator);
 
 class Main extends Component {

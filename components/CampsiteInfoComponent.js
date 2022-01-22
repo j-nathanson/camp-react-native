@@ -30,7 +30,7 @@ class CampsiteInfo extends Component {
 
     // title of the navbar
     static navigationOptions = {
-        title: 'Campsite Information xoxox'
+        title: 'Campsite Information'
     }
 
     render() {
