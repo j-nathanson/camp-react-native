@@ -11,9 +11,16 @@ import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
 import { createAppContainer } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import SafeAreaView from 'react-native-safe-area-view';
+import { connect } from 'react-redux';
+import { fetchCampsites, fetchComments, fetchPromotions, fetchPartners } from '../redux/ActionCreators';
 
-// In this exercise, you learned how to add icons to your Drawer and Stack Navigators, and how to customize the side drawer
-
+// object that allows 'props' to have these dispatch methods which call the reducers in the store
+const mapDispatchToProps = {
+    fetchCampsites,
+    fetchComments,
+    fetchPromotions,
+    fetchPartners
+};
 // Directory page
 // toggleDrawer is a built in method from 'navigation'
 // 'name' attribute gets specific icon from fa
@@ -205,6 +212,15 @@ const MainNavigator = createDrawerNavigator(
 const AppNavigator = createAppContainer(MainNavigator);
 
 class Main extends Component {
+
+    // after render
+    componentDidMount() {
+        this.props.fetchCampsites();
+        this.props.fetchComments();
+        this.props.fetchPromotions();
+        this.props.fetchPartners();
+    }
+
     render() {
         return (
             <View
@@ -248,5 +264,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Main;
+// not mapping state to props so we leave first argument as 'null'
+export default connect(null, mapDispatchToProps)(Main);
+
 
