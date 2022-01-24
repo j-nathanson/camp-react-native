@@ -4,8 +4,6 @@ import { Card, Icon } from 'react-native-elements';
 import { CAMPSITES } from '../shared/campsites';
 import { COMMENTS } from '../shared/comments';
 
-// In this lesson, you updated your CampsiteInfo component to display the list of comments for each campsite. You also learned how to use the Icon component from RNE to add an interactive heart icon that can be used to mark a campsite as a favorite.
-
 function RenderCampsite(props) {
 
     // campsite object from props

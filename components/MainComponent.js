@@ -12,6 +12,8 @@ import { createAppContainer } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import SafeAreaView from 'react-native-safe-area-view';
 
+// In this exercise, you learned how to add icons to your Drawer and Stack Navigators, and how to customize the side drawer
+
 // Directory page
 // toggleDrawer is a built in method from 'navigation'
 // 'name' attribute gets specific icon from fa
@@ -216,7 +218,7 @@ class Main extends Component {
     }
 }
 
-// creates styles object that can be called with styles.StackIcon for eg
+// creates custom styles object that can be called with styles.StackIcon for example
 const styles = StyleSheet.create({
     container: {
         flex: 1,
