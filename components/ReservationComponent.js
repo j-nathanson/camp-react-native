@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, StyleSheet, Picker, Switch, Button } from 'react-native';
+import { Text, View, ScrollView, StyleSheet, Picker, Switch, Button, Modal } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-// In this exercise, you practiced creating a form by using several components that intake user input, the Switch and Picker components from React Native, along with a third party component named DateTimePicker. 
-// You set up these components to store their values, via their built-in onValueChange and onChange props and React's setState() function, inside the Reservation component's state. 
-// You added code to handle the form submission by writing an event handler method then attaching it to a Button component used to submit the form.
-// You also created and used a StyleSheet to style your form, and you added the new Reservation component to your app's navigation.
-
+// In this lesson, you learned how to add a Modal component from React Native to your app, and you set up an event handler to toggle the modal's visibility, as well as an event handler to reset the form to its initial values. 
 class Reservation extends Component {
 
     // not controlled by redux
@@ -17,7 +13,8 @@ class Reservation extends Component {
             campers: 1,
             hikeIn: false,
             date: new Date(),
-            showCalendar: false
+            showCalendar: false,
+            showModal: false
         };
     }
 
@@ -25,13 +22,22 @@ class Reservation extends Component {
         title: 'Reserve Campsite'
     }
 
+    toggleModal() {
+        this.setState({ showModal: !this.state.showModal });
+    }
+
     handleReservation() {
         console.log(JSON.stringify(this.state));
+        this.toggleModal();
+    }
+
+    resetForm() {
         this.setState({
             campers: 1,
             hikeIn: false,
             date: new Date(),
-            showCalendar: false
+            showCalendar: false,
+            showModal: false
         });
     }
 
@@ -58,7 +64,7 @@ class Reservation extends Component {
                     <Switch
                         style={styles.formItem}
                         value={this.state.hikeIn}
-                        trackColor={{ true: '#5637DD', false: null }}
+                        trackColor={{ true: '#5637DD', false: '' }}
                         onValueChange={value => this.setState({ hikeIn: value })}
                     />
                 </View>
@@ -92,6 +98,33 @@ class Reservation extends Component {
                         accessibilityLabel='Tap me to search for available campsites to reserve'
                     />
                 </View>
+                <Modal
+                    animationType={'slide'}
+                    transparent={false}
+                    visible={this.state.showModal}
+                    onRequestClose={() => this.toggleModal()}
+                >
+                    <View style={styles.modal}>
+                        <Text style={styles.modalTitle}>Search Campsite Reservations</Text>
+                        <Text style={styles.modalText}>
+                            Number of Campers: {this.state.campers}
+                        </Text>
+                        <Text style={styles.modalText}>
+                            Hike-In?: {this.state.hikeIn ? 'Yes' : 'No'}
+                        </Text>
+                        <Text style={styles.modalText}>
+                            Date: {this.state.date.toLocaleDateString('en-US')}
+                        </Text>
+                        <Button
+                            onPress={() => {
+                                this.toggleModal();
+                                this.resetForm();
+                            }}
+                            color='#5637DD'
+                            title='Close'
+                        />
+                    </View>
+                </Modal>
             </ScrollView>
         );
     }
@@ -111,6 +144,22 @@ const styles = StyleSheet.create({
     },
     formItem: {
         flex: 1
+    },
+    modal: {
+        justifyContent: 'center',
+        margin: 20
+    },
+    modalTitle: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        backgroundColor: '#5637DD',
+        textAlign: 'center',
+        color: '#fff',
+        marginBottom: 20
+    },
+    modalText: {
+        fontSize: 18,
+        margin: 10
     }
 });
 
