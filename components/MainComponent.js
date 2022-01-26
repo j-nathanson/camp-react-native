@@ -81,7 +81,7 @@ const HomeNavigator = createStackNavigator(
 // About Page
 const AboutNavigator = createStackNavigator(
     {
-        Home: { screen: About }
+        About: { screen: About }
     },
     {
         defaultNavigationOptions: ({ navigation }) => ({
@@ -104,7 +104,7 @@ const AboutNavigator = createStackNavigator(
 // Contact Page
 const ContactNavigator = createStackNavigator(
     {
-        Home: { screen: Contact }
+       Contact: { screen: Contact }
     },
     {
         defaultNavigationOptions: ({ navigation }) => ({
