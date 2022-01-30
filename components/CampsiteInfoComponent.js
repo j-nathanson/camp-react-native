@@ -191,7 +191,6 @@ class CampsiteInfo extends Component {
                             />
                         </View>
                     </View>
-
                 </Modal>
             </ScrollView>
         );
