@@ -1,15 +1,27 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
+import { persistStore, persistCombineReducers } from 'redux-persist';
+import storage from 'redux-persist/es/storage';
 import { campsites } from './campsites';
 import { comments } from './comments';
 import { promotions } from './promotions';
 import { partners } from './partners';
 import { favorites } from './favorites';
 
+// persistStore, persistCombineReducers persistant support to automatically update when there is a change to the state
+// storage access to local storage on device
+
+// first properties are requiried, debug will console log
+const config = {
+    key: 'root',
+    storage,
+    debug: true
+}
+
 export const ConfigureStore = () => {
     const store = createStore(
-        combineReducers({
+        persistCombineReducers(config, {
             campsites,
             comments,
             partners,
@@ -19,5 +31,9 @@ export const ConfigureStore = () => {
         applyMiddleware(thunk, logger)
     );
 
-    return store;
+
+    const persistor = persistStore(store);
+
+    return { persistor, store };
+
 }
