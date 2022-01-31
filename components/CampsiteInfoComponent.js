@@ -6,7 +6,7 @@ import { baseUrl } from '../shared/baseUrl';
 import { postFavorite, postComment } from '../redux/ActionCreators';
 import * as Animatable from 'react-native-animatable';
 
-// In this exercise, you learned to use the PanResponder and two panHandlers, onStartShouldSetPanResponder and onPanResponderEnd, to cause the campsite information Card in the CampsiteInfo component to respond to a drag gesture of more than 200 pixels to the left
+// In this exercise, you saw the use of animations, via another way of using the Animatable library, as a way of providing visual feedback to users in response to gestures.
 
 const mapStateToProps = state => {
     return {
@@ -26,13 +26,21 @@ function RenderCampsite(props) {
     // campsite object from props
     const { campsite } = props;
 
+    // similar to id attribute
+    const view = React.createRef();
+
     // dx distance of gesture across x-axis
     const recognizeDrag = ({ dx }) => (dx < -200) ? true : false;
 
     // onStartShouldSetPanResponder listens to gestures on element
     // onPanResponderEnd when gesture ends
+    // onPanResponderGrant when gesture is first recognized
     const panResponder = PanResponder.create({
         onStartShouldSetPanResponder: () => true,
+        onPanResponderGrant: () => {
+            view.current.rubberBand(1000)
+                .then(endState => console.log(endState.finished ? 'finished' : 'canceled'));
+        },
         onPanResponderEnd: (e, gestureState) => {
             console.log('pan responder end', gestureState);
             if (recognizeDrag(gestureState)) {
@@ -64,6 +72,7 @@ function RenderCampsite(props) {
             <Animatable.View animation='fadeInDown'
                 duration={2000}
                 delay={1000}
+                ref={view}
                 {...panResponder.panHandlers}>
                 <Card
                     featuredTitle={campsite.name}
