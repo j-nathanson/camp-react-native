@@ -47,9 +47,11 @@ class Directory extends Component {
                 data={this.props.campsites.campsites}
                 renderItem={renderDirectoryItem}
                 keyExtractor={item => item.id.toString()}
+
             />
         );
     }
 }
+
 
 export default connect(mapStateToProps)(Directory);
