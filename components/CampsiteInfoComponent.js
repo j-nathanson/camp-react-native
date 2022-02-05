@@ -30,7 +30,11 @@ function RenderCampsite(props) {
     const view = React.createRef();
 
     // dx distance of gesture across x-axis
+    // from right to left
     const recognizeDrag = ({ dx }) => (dx < -200) ? true : false;
+
+    // from left to right
+    const recognizeComment = ({ dx }) => (dx > 200) ? true : false;
 
     // onStartShouldSetPanResponder listens to gestures on element
     // onPanResponderEnd when gesture ends
@@ -61,6 +65,9 @@ function RenderCampsite(props) {
                     ],
                     { cancelable: false }
                 );
+            }
+            else if (recognizeComment(gestureState)) {
+                props.onShowModal();
             }
             return true;
         }
