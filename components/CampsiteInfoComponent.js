@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, FlatList, Modal, Button, StyleSheet, Alert, PanResponder } from 'react-native';
+import { Text, View, ScrollView, FlatList, Modal, Button, StyleSheet, Alert, PanResponder, Share } from 'react-native';
 import { Card, Icon, Rating, Input } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import { postFavorite, postComment } from '../redux/ActionCreators';
 import * as Animatable from 'react-native-animatable';
 
-// In this exercise, you saw the use of animations, via another way of using the Animatable library, as a way of providing visual feedback to users in response to gestures. 
 
 const mapStateToProps = state => {
     return {
@@ -73,6 +72,17 @@ function RenderCampsite(props) {
         }
     });
 
+    // share a campsite on social media, dialogTitle android only
+    const shareCampsite = (title, message, url) => {
+        Share.share({
+            title: title,
+            message: `${title}: ${message} ${url}`,
+            url: url
+        }, {
+            dialogTitle: 'Share ' + title
+        });
+    };
+
     if (campsite) {
         // set icon set with type, raised shadow effect, reverse color scheme
         return (
@@ -105,9 +115,15 @@ function RenderCampsite(props) {
                             raised
                             reverse
                             onPress={() => props.onShowModal()}
-                        >
-
-                        </Icon>
+                        />
+                        <Icon
+                            name='share'
+                            type='font-awesome'
+                            color='#5637DD'
+                            raised
+                            reverse
+                            onPress={() => shareCampsite(campsite.name, campsite.description, baseUrl + campsite.image)}
+                        />
                     </View>
                 </Card>
             </Animatable.View >
