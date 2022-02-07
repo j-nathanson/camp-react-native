@@ -5,7 +5,7 @@ import * as Animatable from 'react-native-animatable';
 
 class Reservation extends Component {
 
-    // not controlled by redux
+    // not controlled by redux 
     constructor(props) {
         super(props);
 

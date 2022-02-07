@@ -6,7 +6,7 @@ import { baseUrl } from '../shared/baseUrl';
 import { postFavorite, postComment } from '../redux/ActionCreators';
 import * as Animatable from 'react-native-animatable';
 
-// In this exercise, you saw the use of animations, via another way of using the Animatable library, as a way of providing visual feedback to users in response to gestures.
+// In this exercise, you saw the use of animations, via another way of using the Animatable library, as a way of providing visual feedback to users in response to gestures. 
 
 const mapStateToProps = state => {
     return {
