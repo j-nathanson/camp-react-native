@@ -149,22 +149,18 @@ class RegisterTab extends Component {
     }
 
     getImageFromCamera = async () => {
-        try {
-            const cameraPermission = await Permissions.askAsync(Permissions.CAMERA);
-            const cameraRollPermission = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+        const cameraPermission = await Permissions.askAsync(Permissions.CAMERA);
+        const cameraRollPermission = await Permissions.askAsync(Permissions.MEDIA_LIBRARY);
 
-            if (cameraPermission.status === 'granted' && cameraRollPermission.status === 'granted') {
-                const capturedImage = await ImagePicker.launchCameraAsync({
-                    allowsEditing: true,
-                    aspect: [1, 1]
-                });
-                if (!capturedImage.cancelled) {
-                    console.log(capturedImage);
-                    this.setState({ imageUrl: capturedImage.uri });
-                }
+        if (cameraPermission.status === 'granted' && cameraRollPermission.status === 'granted') {
+            const capturedImage = await ImagePicker.launchCameraAsync({
+                allowsEditing: true,
+                aspect: [1, 1]
+            });
+            if (!capturedImage.cancelled) {
+                console.log(capturedImage);
+                this.setState({ imageUrl: capturedImage.uri });
             }
-        } catch (err) {
-            console.log(err)
         }
     }
 

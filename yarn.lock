@@ -3274,12 +3274,14 @@ expo-font@~9.1.0:
   dependencies:
     fontfaceobserver "^2.1.0"
 
-expo-image-picker@8:
-  version "8.4.0"
-  resolved "https://registry.yarnpkg.com/expo-image-picker/-/expo-image-picker-8.4.0.tgz#b4a7c06411f1b190cb6fb695a3cdf0fb8f29dfb2"
-  integrity sha512-XvBNxC5ZXJN9Vsvr+QFk9PYJW1PP7YoPqprFfoBeg1/eBtCAEjgqdQ2o/Ak1RQoCqwg8SEKxxHtQpGogZZCx5g==
+expo-image-picker@~10.1.4:
+  version "10.1.4"
+  resolved "https://registry.yarnpkg.com/expo-image-picker/-/expo-image-picker-10.1.4.tgz#5805ea365385298cd59315790481a0a8d6c6a9ef"
+  integrity sha512-4U16RteJNWP5mC198fOIK/BgI3ZXRjqwslFK/gUrKiK5QKECXdvPCHrPwbXlo1DRQNhoPvWd+Cnhod0RsDnMkQ==
   dependencies:
-    expo-permissions "~9.1.0"
+    "@expo/config-plugins" "^1.0.18"
+    expo-permissions "~12.0.1"
+    unimodules-permissions-interface "~6.1.0"
     uuid "7.0.2"
 
 expo-keep-awake@~9.1.2:
@@ -3318,15 +3320,10 @@ expo-notifications@~0.11.6:
     unimodules-permissions-interface "~6.1.0"
     uuid "^3.4.0"
 
-expo-permissions@9:
-  version "9.3.0"
-  resolved "https://registry.yarnpkg.com/expo-permissions/-/expo-permissions-9.3.0.tgz#b90c7e9e411d306c1c7ba2bae18d5c53c201affd"
-  integrity sha512-ylSJZVvEGJVFTKsFrUL2S6gCvFt+/o8TJ3xT4WaMjHe2/2Z7R8ng6NR47Kt54t7XBIV/SZ7DIY9uRiR7TPuNYA==
-
-expo-permissions@~9.1.0:
-  version "9.1.0"
-  resolved "https://registry.yarnpkg.com/expo-permissions/-/expo-permissions-9.1.0.tgz#b830a9e8100d5650a874122b432a65ab1dfdf4c1"
-  integrity sha512-nNF8voeRSzMCIJzt27dmpHHm70ZiZh528GJJzHd9qX9aIgrN2j0WsrFI31p7Q8uPUI8HDCBbF7JmvO91GmFrhQ==
+expo-permissions@~12.0.1:
+  version "12.0.1"
+  resolved "https://registry.yarnpkg.com/expo-permissions/-/expo-permissions-12.0.1.tgz#5163c00d991bf565bf987354611628c298ddd0c4"
+  integrity sha512-TtypNPPLG4SdVEKBlrArLLZIyhlhE+3B4dhz2HaY1Mve2rcvKE0C7z/e1WoUVU8+LgcdKoNGwg/wRVeCkxeEhg==
 
 expo-secure-store@~10.1.0:
   version "10.1.0"
