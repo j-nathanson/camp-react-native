@@ -180,6 +180,8 @@ class RegisterTab extends Component {
     render() {
         return (
             <ScrollView>
+
+
                 <View style={styles.container}>
                     <View style={styles.imageContainer}>
                         <Image
