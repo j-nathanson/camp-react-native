@@ -9,7 +9,6 @@ import { promotions } from './promotions';
 import { partners } from './partners';
 import { favorites } from './favorites';
 
-// In this exercise, you learned to persist the Redux store using the redux-persist library and rehydrate the store upon reloading the application.
 
 // persistStore, persistCombineReducers persistant support to automatically update when there is a change to the state
 // storage access to local storage on device

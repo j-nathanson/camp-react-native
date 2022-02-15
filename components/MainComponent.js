@@ -8,7 +8,7 @@ import Reservation from './ReservationComponent';
 import Favorites from './FavoritesComponent';
 import Login from './LoginComponent';
 import Constants from 'expo-constants';
-import { View, Platform, StyleSheet, Text, ScrollView, Image, ToastAndroid } from 'react-native';
+import { View, Platform, StyleSheet, Text, ScrollView, Image, ToastAndroid, Alert } from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
@@ -336,19 +336,21 @@ class Main extends Component {
         this.props.fetchComments();
         this.props.fetchPromotions();
         this.props.fetchPartners();
-
-        // rewrite to async/await
-        NetInfo.fetch().then(connectionInfo => {
-            (Platform.OS === 'ios')
-                ? Alert.alert('Initial Network Connectivity Type:', connectionInfo.type)
-                : ToastAndroid.show('Initial Network Connectivity Type: ' +
-                    connectionInfo.type, ToastAndroid.LONG);
-        });
+        this.showNetInfo();
 
         // method creation
         this.unsubscribeNetInfo = NetInfo.addEventListener(connectionInfo => {
             this.handleConnectivityChange(connectionInfo);
         });
+    }
+
+    showNetInfo = async () => {
+        const connectionInfo = await NetInfo.fetch();
+
+        Platform.OS === 'ios'
+            ? Alert.alert('Initial Network Connectivity Type:', connectionInfo.type)
+            : ToastAndroid.show('Initial Network Connectivity Type: ' +
+                connectionInfo.type, ToastAndroid.LONG);
     }
 
     componentWillUnmount() {
